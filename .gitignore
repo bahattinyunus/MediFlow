@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+dist/
+build/
+.next/
+coverage/
+.env
+.env.local
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp

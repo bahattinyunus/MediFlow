@@ -5,14 +5,20 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const patientsRouter = require('./routes/patients');
+const prescriptionsRouter = require('./routes/prescriptions');
+
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/patients', patientsRouter);
+app.use('/api/prescriptions', prescriptionsRouter);
+
 app.get('/', (req, res) => {
-  res.json({ 
-    message: 'Apotheca AI Backend Service', 
+  res.json({
+    message: 'Apotheca AI Backend Service',
     status: 'running',
-    version: '1.0.0' 
+    version: '1.0.0'
   });
 });
 

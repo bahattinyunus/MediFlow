@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Patient {
+  id            String         @id @default(uuid())
+  fullName      String
+  age           Int
+  gender        String
+  status        String         @default("Stable") // Stable, Critical, Review
+  lastDiagnosis String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  prescriptions Prescription[]
+}
+
+model Doctor {
+  id            String         @id @default(uuid())
+  fullName      String
+  specialty     String
+  prescriptions Prescription[]
+}
+
+model Prescription {
+  id             String   @id @default(uuid())
+  medicationName String
+  dosage         String
+  status         String   @default("Pending") // Pending, Approved, Preparing, Delivered
+  patientId      String
+  patient        Patient  @relation(fields: [patientId], references: [id])
+  doctorId       String
+  doctor         Doctor   @relation(fields: [doctorId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

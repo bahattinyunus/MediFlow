@@ -57,7 +57,7 @@ export function Sidebar() {
                         <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-lg" />
                     </div>
                     <h1 className="text-2xl font-bold">
-                        MediFlow
+                        Apotheca AI
                     </h1>
                 </Link>
                 <div className="space-y-1">
